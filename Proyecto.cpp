@@ -126,7 +126,17 @@ void eliminarProyecto(){
 		return;
 	}
 	cout << "\n- - - ELIMINAR PROYECTO - - -\n";
+	cout << "Ingrese el codigo del proyecto a eliminar: ";
+	string codigo;
 	
+	for(auto it = proyectos.begin(); it != proyectos.end(); ++it) {
+		if (it -> codigo == codigo){
+			proyectos.erase(it);
+			cout << "El proyecto ha sido eliminado correctamente...\n";
+			return;
+		}
+	}
+	cout << "No se encontro ningun proyecto con ese codigo... Por favor ingrese uno existente: \n";
 }
 
 //CRUD para seleccionar opciones
@@ -138,8 +148,11 @@ int main () {
         cout << "\n- - - MENU PRINCIPAL - - -";
         cout << "1. Crear Nuevo Proyecto\n";
         cout << "2. Mostrar Proyectos\n";
+        cout << "3. Actualizar Proyecto\n";
+        cout << "4. Eliminar Proyecto";
         cout << "0. Salir\n";
         cout << "Elige una opcion por favor... ";
+        
         //Validar y limpiar el buffer para cin y el getline
         while (!(cin >> opcion)){
             cout << "OPCION INVALIDA! Por favor ingresa uno de los del menu: ";
@@ -147,7 +160,6 @@ int main () {
             cin.ignore(numeric_limits<streamsize>::max(),'\n');
         }
         cin.ignore(numeric_limits<streamsize>::max(),'\n');
-
     }
 
-} //Repasar el codigo
+} 
