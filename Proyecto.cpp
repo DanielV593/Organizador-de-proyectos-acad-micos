@@ -145,13 +145,13 @@ int main () {
 
     int opcion; 
     do {
-        cout << "\n- - - MENU PRINCIPAL - - -";
+        cout << "- - - MENU PRINCIPAL - - -\n";
         cout << "1. Crear Nuevo Proyecto\n";
         cout << "2. Mostrar Proyectos\n";
         cout << "3. Actualizar Proyecto\n";
-        cout << "4. Eliminar Proyecto";
+        cout << "4. Eliminar Proyecto\n";
         cout << "0. Salir\n";
-        cout << "Elige una opcion por favor... ";
+        cout << "Elige una opcion por favor: ";
         
         //Validar y limpiar el buffer para cin y el getline
         while (!(cin >> opcion)){
@@ -160,7 +160,28 @@ int main () {
             cin.ignore(numeric_limits<streamsize>::max(),'\n');
         }
         cin.ignore(numeric_limits<streamsize>::max(),'\n');
-    }
 
+	//Agregamos un switch para manejar el menu
+	 switch (opcion) {
+		case 1:
+			crearProyecto();
+			break;
+		case 2:
+			mostrarProyectos();
+			break;
+		case 3:
+			actualizarProyecto();
+		 	break;
+		case 4:
+			eliminarProyecto();
+			break;
+		case 0:
+			cout<<"Programa Finalizado";
+			break;
+		default:
+			cout<<"Opcion no valida. Intenta otra vez\n";
+			break;
+	}
+    } while (opcion != 0)
 } 
 
