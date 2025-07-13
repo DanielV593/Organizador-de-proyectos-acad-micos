@@ -73,6 +73,61 @@ void mostrarProyectos(){
              << (p.entregado ? "Entregado" : "Pendiente") << endl; // Muestra el estado de entrega
     }
 }
+//Funcion Para actualizar proyecto por codigo
+void actualizarProyecto() {
+	if(proyectos.empty()){
+		cout << "\nNo existen proyectos agregados para actualizar...\n";
+		return;
+	}
+	cout << "\n- - - ACTUALIZAR PROYECTO - - -";
+	cout <<"Ingresa el codigo del proyecto para actualizarlo: ";
+	string codigo; 
+	getline(cin, codigo);
+	
+bool encontrado = false;
+for(auto& p: proyectos) {
+	if (p.codigo == codigo){
+		encontrado = true;
+		
+		string entrada;
+		cout << "(Puede dejar en blanco si no se desea cambiar el campo)\n"; 
+		//Este apartado es por si el usuario no desea cambiar algun campo del proyecto seleccionado
+		
+		cout << "Nombre actual  [" << p.nombre << "]: ";
+		getline(cin, entrada);
+		if (!entrada.empty()) p.nombre = entrada;
+		
+		cout << "Materia actual  [" << p.materia << "]: ";
+		getline(cin, entrada);
+		if(!entrada.empty()) p.materia = entrada;
+		
+		cout << "Integrante(s) actual(es)  [" << p.integrantes << "]: ";
+		getline(cin, entrada);
+		if(!entrada.empty()) p.integrantes = entrada;
+		
+		cout <<  "Estado actual (" << (p.entregado ? "Entregado" : "Pendiente")	<< "). Marcar como entregado? (s/n): ";
+		getline(cin, entrada);
+		if(!entrada.empty() &&(entrada == "s" || entrada == "S" )) p.entregado = true;
+		
+		cout << "Proyecto actualizado correctamente...\n";
+		break;
+	}
+}
+if (!encontrado) {
+	cout << "No se encontro ningun proyecto con ese codigo... Por favor intente con otro: \n";
+	
+	}	
+}
+//Funcion para eliminar un proyecto por el codigo
+
+void eliminarProyecto(){
+	if (proyectos.empty()){
+		cout <<"\nNo se ha agregado ningun proyecto aun...\n";
+		return;
+	}
+	cout << "\n- - - ELIMINAR PROYECTO - - -\n";
+	
+}
 
 //CRUD para seleccionar opciones
 int main () {
@@ -94,4 +149,5 @@ int main () {
         cin.ignore(numeric_limits<streamsize>::max(),'\n');
 
     }
+
 } //Repasar el codigo
