@@ -182,6 +182,5 @@ int main () {
 			cout<<"Opcion no valida. Intenta otra vez\n";
 			break;
 	}
-    } while (opcion != 0)
+    } while (opcion != 0);
 } 
-
