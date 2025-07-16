@@ -184,3 +184,23 @@ int main () {
 	}
     } while (opcion != 0);
 } 
+
+//Integrante 2 Alejandro Taco
+void guardarEnArchivo(){
+	//el archivo se va a llamar asi:
+	ofstream archivo ("proyecto.txt");
+	if (!archivo.is_open()){ //comprobar que el archivo se abrio correctamente.
+		cout << "Error, no se puedo abrir el archivo para guardar.\n";
+			return;
+	}
+	for (const auto& p : proyectos){
+		//cada cosa se va a escirbir en una linea
+		archivo << "Codio: " << p.codigo << "\n";
+		archivo << "Nombre: " << p.nombre << "\n";
+		archivo << "Materia: " << p.materia << "\n";
+		archivo << "Integrantes: " << p.integrantes << "\n";
+		archivo << "Entregado: " << (p.entregado ? "true" : "false") << "\n";
+		archivo << "----\n";
+	}
+	archivo.close(); //proyectos guardados.
+}
