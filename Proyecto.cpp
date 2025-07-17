@@ -3,6 +3,7 @@
 #include <limits>
 #include <string>
 #include <clocale>
+#include <fstream>
 
 //Integrante 1 Juan Vasquez
 using namespace std; 
@@ -188,7 +189,7 @@ int main () {
 //Integrante 2 Alejandro Taco
 void guardarEnArchivo(){
 	//el archivo se va a llamar asi:
-	ofstream archivo ("proyecto.txt");
+	ofstream archivo ("proyectos.txt");
 	if (!archivo.is_open()){ //comprobar que el archivo se abrio correctamente.
 		cout << "Error, no se puedo abrir el archivo para guardar.\n";
 			return;
@@ -203,4 +204,43 @@ void guardarEnArchivo(){
 		archivo << "----\n";
 	}
 	archivo.close(); //proyectos guardados.
+}
+//Integrante 2 Alejandro Taco
+void carfarProyectoArchivo(){
+	ifstream archivo("proyectos.txt"); //abrir el archivo para lectura
+	if (!archivo.is_open()){ //verificar si el archivo existe y si se abrio correctamente
+		cout << "El archivo proyectos.txt no existe o no se abrio corectamente...\n"; //sirve para depuracion
+		return;
+	}
+	proyectos.clear(); //limpia el vector antes de cargar desde el archivo
+	
+	string linea;
+	Proyecto tempProyecto;
+	int campo_actual = 0; //0 para iniciar con el codigo 1 para nombre, 2 para materia, 3 para integrantes y 4 para entregado.
+	
+	while(getline(archivo, linea)){ //lee el archivo linea por linea
+		if (linea.rfind("Codigo: ", 0) == 0){//rfind para buscar al inicio
+			tempProyecto.codigo = linea.substr(8); // el codigo tiene solo 8 caracteres.
+			campo_actual = 1;
+		}else if (linea.rfind("Nombre: ", 0) == 0){
+			tempProyecto.nombre = linea.substr(8);
+			campo_actual = 2;
+		}else if (linea.rfind("Materia: ", 0) == 0){
+			tempProyecto.materia = linea.substr(9);
+			campo_actual = 3;
+		}else if (linea.rfind("Integrantes: ", 0) == 0){
+			tempProyecto.integrantes = linea.substr(13);
+			campo_actual = 4;
+		}else if (linea.rfind("Entregado: ", 0) == 0){
+			tempProyecto.entregado = (linea.substr(11) == "true")
+			campo_actual = 5;
+		}else if (linea == "----"){ //el separador de proyectos
+			if (campo_actual == 5){ //para asegurar que todos los campos del proyecto haya sido leidos
+				proyectos.push_back(tempProyecto);
+				tempProyecto = Proyecto();// reinicia el ciclo para el siguiente proyecto
+				campo_actual = 0;
+			}
+		}
+	}
+	archivo.close();
 }
