@@ -52,10 +52,10 @@ void crearProyecto(){
 		/*Validamos que el codigo no este vacio y que no se repita,
 		el empty usamos para verificar si alguna variable no esta vacia igual usamos en los datos que vamos a pedir por consola*/
 		if (nuevo.codigo.empty()){
-			cout<< "El codigo no puede estar vacio, por favor ingresa un codigo valido: \n";
+			cout<< "El codigo no puede estar vacio, por favor ingresa un codigo valido. \n";
 			continue;
 		}else if(buscarProyecto(nuevo.codigo) != -1){
-			cout << "Ya existe un proyecto con ese codigo, por favor asigna otro: \n";
+			cout << "Ya existe un proyecto con ese codigo, por favor asigna otro. \n";
 			nuevo.codigo.clear();
 		}
 	} while (nuevo.codigo.empty() || buscarProyecto(nuevo.codigo)!= -1);
@@ -96,16 +96,16 @@ void mostrarProyectos(){
         return;
     }
     //El encabezado de lista de proyectos quedaria asi: 
-    cout <<"\n- - - LISTA DE PROYECTOS ACADEMICOS - - -" << endl;
-    cout <<"Codigo\tNombre\t\t\tMateria\t\tIntegrantes\t\tEstado"<< endl; //el /t es para que se pueda leer de mejor manera, como usar un tab 
-    
+    cout <<"- - - LISTA DE PROYECTOS ACADEMICOS - - -" << endl;
+
     //Esta funcioon busca los proyectos y tambien muestra su informacion 
     for (const auto& p: proyectos) {
-        cout << p.codigo << "\t" // Muestra el codigo del proyecto
-             << p.nombre << "\t\t\t" // Muestra el nombre del proyecto
-             << p.materia << "\t\t" // Muestra la materia del proyecto
-             << p.integrantes << "\t\t"//Muestra el/los integrante(s) del Proyecto
-             << (p.entregado ? "Entregado" : "Pendiente") << endl; // Muestra el estado de entrega
+        cout <<"Codigo:"<< p.codigo << endl;// Muestra el codigo del proyecto
+		cout<<"Nombre: "<< p.nombre << endl; // Muestra el nombre del proyecto
+        cout<<"Materia: "<< p.materia <<endl;// Muestra la materia del proyecto
+		cout<<"Integrantes: " <<p.integrantes <<endl;//Muestra el/los integrante(s) del Proyecto
+		cout<<"Estado: "<< (p.entregado ? "Entregado" : "Pendiente") << endl; // Muestra el estado de entrega
+		cout << "------------------------------------\n";
     }
 }
 //Funcion Para actualizar proyecto por codigo
@@ -247,7 +247,7 @@ int main () {
         cout << "2. Mostrar Proyectos\n";
         cout << "3. Actualizar Proyecto\n";
         cout << "4. Eliminar Proyecto\n";
-        cout << "0. Salir\n";
+        cout << "0. Salir y Guardar\n";
         cout << "Elige una opcion por favor: ";
         
         //Validar y limpiar el buffer para cin y el getline
