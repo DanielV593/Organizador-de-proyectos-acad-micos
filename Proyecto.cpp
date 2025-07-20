@@ -27,6 +27,14 @@ int buscarProyecto(const string& codigo) {
             return static_cast<int>(i);
     return -1;
 }
+//usamos la funcion trim para eliminar espacios en blanco al inicio y al final de una cadena
+string trim(const string& str) {
+    size_t first = str.find_first_not_of(' ');
+    if (first == string::npos) return "";
+    size_t last = str.find_last_not_of(' ');
+    return str.substr(first, (last - first + 1));
+}
+
 //Funcion para crear un nuevo proyecto
 
 void crearProyecto(){
@@ -34,36 +42,62 @@ void crearProyecto(){
     cout << "\n- - - AGREGAR NUEVO PROYECTO ACADEMICO - - -\n";
 
     do{
-        cout << "Codigo del proyecto ej 001: ";//Funcion para asiganr codigo y que no se repitan
+        cout << "Codigo del proyecto ej 001: ";//Funcion para asiganar codigo y que no se repitan
         getline(cin, nuevo.codigo);
-        if (buscarProyecto(nuevo.codigo)!= -1){
-            cout << "Ya existe un proyecto con ese codigo, por favor asigna otro: \n";
-        }
-    } while (buscarProyecto(nuevo.codigo)!= -1);
-    cout <<"Nombre del proyecto: ";
-    getline(cin, nuevo.nombre);
+		/*
+		La funcion tirm elimina espacios en blanco al inicio y al final, y valida que no se ingrese cadenas vacias,
+		Usamos para todos los datos que vamos a pedir por consola como codigo, nombre del proyecto, etc.
+		*/
+		nuevo.codigo = trim(nuevo.codigo); 
+		/*Validamos que el codigo no este vacio y que no se repita,
+		el empty usamos para verificar si alguna variable no esta vacia igual usamos en los datos que vamos a pedir por consola*/
+		if (nuevo.codigo.empty()){
+			cout<< "El codigo no puede estar vacio, por favor ingresa un codigo valido: \n";
+			continue;
+		}else if(buscarProyecto(nuevo.codigo) != -1){
+			cout << "Ya existe un proyecto con ese codigo, por favor asigna otro: \n";
+			nuevo.codigo.clear();
+		}
+	} while (nuevo.codigo.empty() || buscarProyecto(nuevo.codigo)!= -1);
 
-    cout << "Materia del Proyecto: ";
-    getline(cin, nuevo.materia);
+	do{
+		cout <<"Nombre del proyecto: ";
+		getline(cin, nuevo.nombre);
+		nuevo.nombre = trim(nuevo.nombre);
+		if (nuevo.nombre.empty())
+			cout << "El nombre no puede estar vacio, por favor ingresa un nombre valido: \n";
+	} while (nuevo.nombre.empty());
 
-    cout << "Nombre del/los integrante(s) a cargo del proyecto: ";
-    getline(cin, nuevo.integrantes);
+	do{
+		cout << "Materia del Proyecto: ";
+		getline(cin, nuevo.materia);
+		nuevo.materia = trim(nuevo.materia);
+		if( nuevo.materia.empty())
+			cout << "La materia no puede estar vacia, por favor ingresa una materia valida: \n";
+	}while (nuevo.materia.empty());
 
-    nuevo.entregado = false;
-    proyectos.push_back(nuevo);
-    cout << "Proyecto guardado correctamente\n";
+	do{
+		cout << "Nombre del/los integrante(s) a cargo del proyecto: ";
+		getline(cin, nuevo.integrantes);
+		nuevo.integrantes = trim(nuevo.integrantes);
+		if (nuevo.integrantes.empty())
+			cout << "El nombre del integrante no puede estar vacio, por favor ingresa un nombre valido: \n";
+	}while (nuevo.integrantes.empty());
 
-
+	nuevo.entregado = false;
+	proyectos.push_back(nuevo);
+	cout << "Proyecto guardado correctamente\n";
 }
+
 //Funcion para mostrar todos los proyectos registrados
 void mostrarProyectos(){
     if (proyectos.empty()){
-        cout << "\nPor ahora no has agregado ningun Proyecto...\n"; //Este mensaje es por si no se han agregado proyectos
+        cout << "\nPor ahora no has agregado ningun Proyecto.\n"; //Este mensaje es por si no se han agregado proyectos
         return;
     }
     //El encabezado de lista de proyectos quedaria asi: 
     cout <<"\n- - - LISTA DE PROYECTOS ACADEMICOS - - -" << endl;
-    cout <<"Codigo\tNombre\t\t\tMateria\t\tFecha\t\tEstado"<< endl; //el /t es para que se pueda leer de mejor manera, como usar un tab 
+    cout <<"Codigo\tNombre\t\t\tMateria\t\tIntegrantes\t\tEstado"<< endl; //el /t es para que se pueda leer de mejor manera, como usar un tab 
     
     //Esta funcioon busca los proyectos y tambien muestra su informacion 
     for (const auto& p: proyectos) {
@@ -77,7 +111,7 @@ void mostrarProyectos(){
 //Funcion Para actualizar proyecto por codigo
 void actualizarProyecto() {
 	if(proyectos.empty()){
-		cout << "\nNo existen proyectos agregados para actualizar...\n";
+		cout << "\nNo existen proyectos agregados para actualizar.\n";
 		return;
 	}
 	cout << "\n- - - ACTUALIZAR PROYECTO - - -";
@@ -115,7 +149,7 @@ for(auto& p: proyectos) {
 	}
 }
 if (!encontrado) {
-	cout << "No se encontro ningun proyecto con ese codigo... Por favor intente con otro: \n";
+	cout << "No se encontro ningun proyecto con ese codigo. Por favor intente con otro: \n";
 	
 	}	
 }
@@ -123,26 +157,88 @@ if (!encontrado) {
 
 void eliminarProyecto(){
 	if (proyectos.empty()){
-		cout <<"\nNo se ha agregado ningun proyecto aun...\n";
+		cout <<"\nNo se ha agregado ningun proyecto aun\n";
 		return;
 	}
 	cout << "\n- - - ELIMINAR PROYECTO - - -\n";
 	cout << "Ingrese el codigo del proyecto a eliminar: ";
 	string codigo;
+	getline(cin, codigo);
 	
 	for(auto it = proyectos.begin(); it != proyectos.end(); ++it) {
 		if (it -> codigo == codigo){
 			proyectos.erase(it);
-			cout << "El proyecto ha sido eliminado correctamente...\n";
+			cout << "El proyecto ha sido eliminado correctamente.\n";
 			return;
 		}
 	}
-	cout << "No se encontro ningun proyecto con ese codigo... Por favor ingrese uno existente: \n";
+	cout << "No se encontro ningun proyecto con ese codigo. Por favor ingrese uno existente: \n";
+}
+
+//Integrante 2 Alejandro Taco
+void guardarEnArchivo(){
+	//el archivo se va a llamar asi:
+	ofstream archivo ("proyectos.txt", ios::out); //abrir el archivo para escritura);
+	if (!archivo.is_open()){ //comprobar que el archivo se abrio correctamente.
+		cout << "Error, no se puedo abrir el archivo para guardar.\n";
+			return;
+	}
+	for (const auto& p : proyectos){
+		//cada cosa se va a escirbir en una linea
+		archivo << "Codigo: " << p.codigo << "\n";
+		archivo << "Nombre: " << p.nombre << "\n";
+		archivo << "Materia: " << p.materia << "\n";
+		archivo << "Integrantes: " << p.integrantes << "\n";
+		archivo << "Entregado: " << (p.entregado ? "true" : "false") << "\n";
+		archivo << "----\n";
+	}
+	archivo.close(); //proyectos guardados.
+}
+//Integrante 2 Alejandro Taco
+void cargarProyectoArchivo(){
+	ifstream archivo("proyectos.txt"); //abrir el archivo para lectura
+	if (!archivo.is_open()){ //verificar si el archivo existe y si se abrio correctamente
+		cout << "El archivo proyectos.txt no existe o no se abrio corectamente.\n"; //sirve para depuracion
+		return;
+	}
+	proyectos.clear(); //limpia el vector antes de cargar desde el archivo
+	
+	string linea;
+	Proyecto tempProyecto;
+	int campo_actual = 0; //0 para iniciar con el codigo 1 para nombre, 2 para materia, 3 para integrantes y 4 para entregado.
+	
+	while(getline(archivo, linea)){ //lee el archivo linea por linea
+		if (linea.rfind("Codigo: ", 0) == 0){//rfind para buscar al inicio
+			tempProyecto.codigo = linea.substr(8); // el codigo tiene solo 8 caracteres.
+			campo_actual = 1;
+		}else if (linea.rfind("Nombre: ", 0) == 0){
+			tempProyecto.nombre = linea.substr(8);
+			campo_actual = 2;
+		}else if (linea.rfind("Materia: ", 0) == 0){
+			tempProyecto.materia = linea.substr(9);
+			campo_actual = 3;
+		}else if (linea.rfind("Integrantes: ", 0) == 0){
+			tempProyecto.integrantes = linea.substr(13);
+			campo_actual = 4;
+		}else if (linea.rfind("Entregado: ", 0) == 0){
+			tempProyecto.entregado = (linea.substr(11) == "true");
+			campo_actual = 5;
+		}else if (linea == "----"){ //el separador de proyectos
+			if (campo_actual == 5){ //para asegurar que todos los campos del proyecto haya sido leidos
+				proyectos.push_back(tempProyecto);
+				tempProyecto = Proyecto();// reinicia el ciclo para el siguiente proyecto
+				campo_actual = 0;
+			}
+		}
+	}
+	archivo.close();
 }
 
 //CRUD para seleccionar opciones
 int main () {
     setlocale(LC_ALL, "Spanish");
+
+	cargarProyectoArchivo(); //Cargar los proyectos al iniciar el programa
 
     int opcion; 
     do {
@@ -177,6 +273,7 @@ int main () {
 			eliminarProyecto();
 			break;
 		case 0:
+			guardarEnArchivo(); //Guardar los proyectos al salir del programa
 			cout<<"Programa Finalizado";
 			break;
 		default:
@@ -185,62 +282,3 @@ int main () {
 	}
     } while (opcion != 0);
 } 
-
-//Integrante 2 Alejandro Taco
-void guardarEnArchivo(){
-	//el archivo se va a llamar asi:
-	ofstream archivo ("proyectos.txt");
-	if (!archivo.is_open()){ //comprobar que el archivo se abrio correctamente.
-		cout << "Error, no se puedo abrir el archivo para guardar.\n";
-			return;
-	}
-	for (const auto& p : proyectos){
-		//cada cosa se va a escirbir en una linea
-		archivo << "Codio: " << p.codigo << "\n";
-		archivo << "Nombre: " << p.nombre << "\n";
-		archivo << "Materia: " << p.materia << "\n";
-		archivo << "Integrantes: " << p.integrantes << "\n";
-		archivo << "Entregado: " << (p.entregado ? "true" : "false") << "\n";
-		archivo << "----\n";
-	}
-	archivo.close(); //proyectos guardados.
-}
-//Integrante 2 Alejandro Taco
-void carfarProyectoArchivo(){
-	ifstream archivo("proyectos.txt"); //abrir el archivo para lectura
-	if (!archivo.is_open()){ //verificar si el archivo existe y si se abrio correctamente
-		cout << "El archivo proyectos.txt no existe o no se abrio corectamente...\n"; //sirve para depuracion
-		return;
-	}
-	proyectos.clear(); //limpia el vector antes de cargar desde el archivo
-	
-	string linea;
-	Proyecto tempProyecto;
-	int campo_actual = 0; //0 para iniciar con el codigo 1 para nombre, 2 para materia, 3 para integrantes y 4 para entregado.
-	
-	while(getline(archivo, linea)){ //lee el archivo linea por linea
-		if (linea.rfind("Codigo: ", 0) == 0){//rfind para buscar al inicio
-			tempProyecto.codigo = linea.substr(8); // el codigo tiene solo 8 caracteres.
-			campo_actual = 1;
-		}else if (linea.rfind("Nombre: ", 0) == 0){
-			tempProyecto.nombre = linea.substr(8);
-			campo_actual = 2;
-		}else if (linea.rfind("Materia: ", 0) == 0){
-			tempProyecto.materia = linea.substr(9);
-			campo_actual = 3;
-		}else if (linea.rfind("Integrantes: ", 0) == 0){
-			tempProyecto.integrantes = linea.substr(13);
-			campo_actual = 4;
-		}else if (linea.rfind("Entregado: ", 0) == 0){
-			tempProyecto.entregado = (linea.substr(11) == "true")
-			campo_actual = 5;
-		}else if (linea == "----"){ //el separador de proyectos
-			if (campo_actual == 5){ //para asegurar que todos los campos del proyecto haya sido leidos
-				proyectos.push_back(tempProyecto);
-				tempProyecto = Proyecto();// reinicia el ciclo para el siguiente proyecto
-				campo_actual = 0;
-			}
-		}
-	}
-	archivo.close();
-}
