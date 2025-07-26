@@ -1,0 +1,20 @@
+# ninja log v6
+8	130	7752762168018128	C:/Users/User/Documents/Proyecto_Programacion/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	d503f67d1eef7950
+332	10195	7752761706233524	Proyecto_Programacion_autogen/mocs_compilation.cpp	65b327543005c874
+332	10195	7752761706233524	C:/Users/User/Documents/Proyecto_Programacion/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/Proyecto_Programacion_autogen/mocs_compilation.cpp	65b327543005c874
+10211	23884	7752761721320697	CMakeFiles/Proyecto_Programacion.dir/mainwindow.cpp.obj	8079bb8b9c726c66
+332	10195	7752761706233524	Proyecto_Programacion_autogen/timestamp	65b327543005c874
+332	10195	7752761706233524	C:/Users/User/Documents/Proyecto_Programacion/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/Proyecto_Programacion_autogen/timestamp	65b327543005c874
+10197	25293	7752761721180561	CMakeFiles/Proyecto_Programacion.dir/Proyecto_Programacion_autogen/mocs_compilation.cpp.obj	5b3d42dd4593d55a
+10204	25083	7752761721252820	CMakeFiles/Proyecto_Programacion.dir/main.cpp.obj	454ba80553d12d80
+27482	28885	7752761894030260	Proyecto_Programacion.exe	410a3fae2be30004
+586	3106	7752762178043836	build.ninja	2a1160130985a4e6
+10229	27482	7752761721482251	CMakeFiles/Proyecto_Programacion.dir/mostrarproyectos.cpp.obj	8039e1469d35e548
+10216	14589	7752761721360882	CMakeFiles/Proyecto_Programacion.dir/proyecto_global.cpp.obj	c48e6f14c642330
+783	973	7752761575161680	CMakeFiles/clean.additional	baedbe210acaa455
+973	1023	7752761577056348	clean	577b940aee94fbd7
+10223	25792	7752761721419279	CMakeFiles/Proyecto_Programacion.dir/crearproyecto.cpp.obj	8fca2580993a38b
+10240	27103	7752761721609169	CMakeFiles/Proyecto_Programacion.dir/eliminarproyecto.cpp.obj	634d2aad663cd168
+10234	27386	7752761721544249	CMakeFiles/Proyecto_Programacion.dir/actualizarproyecto.cpp.obj	67cca63b8f449650
+131	1136	7752762178043836	build.ninja	2a1160130985a4e6
+9	122	7752762178755325	C:/Users/User/Documents/Proyecto_Programacion/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	d503f67d1eef7950

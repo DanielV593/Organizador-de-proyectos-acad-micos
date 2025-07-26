@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ActualizarProyecto</class>
+ <widget class="QDialog" name="ActualizarProyecto">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>720</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Actualizar Proyecto</string>
+  </property>
+
+  <!-- Título -->
+  <widget class="QLabel" name="labelTituloActualizar">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>20</y>
+     <width>181</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Actualizar Proyecto</string>
+   </property>
+  </widget>
+
+  <!-- Buscar por código -->
+  <widget class="QLabel" name="labelBuscarCodigo">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>60</y>
+     <width>150</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Buscar código:</string>
+   </property>
+  </widget>
+
+  <widget class="QLineEdit" name="inputBuscarCodigo">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>60</y>
+     <width>200</width>
+     <height>28</height>
+    </rect>
+   </property>
+  </widget>
+
+  <widget class="QPushButton" name="btnBuscarProyecto">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>60</y>
+     <width>100</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Buscar</string>
+   </property>
+  </widget>
+
+  <!-- Campos editables -->
+  <widget class="QLabel" name="labelNombre">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>120</y>
+     <width>150</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Nombre del proyecto:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="inputNombre">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>120</y>
+     <width>200</width>
+     <height>28</height>
+    </rect>
+   </property>
+  </widget>
+
+  <widget class="QLabel" name="labelMateria">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>170</y>
+     <width>150</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Materia:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="inputMateria">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>170</y>
+     <width>200</width>
+     <height>28</height>
+    </rect>
+   </property>
+  </widget>
+
+  <widget class="QLabel" name="labelIntegrantes">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>220</y>
+     <width>150</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Integrantes:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="inputIntegrantes">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>220</y>
+     <width>200</width>
+     <height>28</height>
+    </rect>
+   </property>
+  </widget>
+
+  <widget class="QCheckBox" name="checkEntregado">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>270</y>
+     <width>111</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>¿Entregado?</string>
+   </property>
+  </widget>
+
+  <!-- Botón actualizar -->
+  <widget class="QPushButton" name="btnActualizarProyecto">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>330</y>
+     <width>150</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Actualizar Proyecto</string>
+   </property>
+  </widget>
+
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

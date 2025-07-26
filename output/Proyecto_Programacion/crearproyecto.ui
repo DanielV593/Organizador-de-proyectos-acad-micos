@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CrearProyecto</class>
+ <widget class="QDialog" name="CrearProyecto">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>420</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Crear Proyecto</string>
+  </property>
+
+  <!-- Título -->
+  <widget class="QLabel" name="labelTituloCrear">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>20</y>
+     <width>200</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Crear Nuevo Proyecto</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+
+  <!-- Código -->
+  <widget class="QLabel" name="labelCodigo">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>70</y>
+     <width>140</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Código del proyecto:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="inputCodigo">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>70</y>
+     <width>220</width>
+     <height>28</height>
+    </rect>
+   </property>
+  </widget>
+
+  <!-- Nombre -->
+  <widget class="QLabel" name="labelNombre">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>120</y>
+     <width>140</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Nombre del proyecto:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="inputNombre">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>120</y>
+     <width>220</width>
+     <height>28</height>
+    </rect>
+   </property>
+  </widget>
+
+  <!-- Materia -->
+  <widget class="QLabel" name="labelMateria">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>170</y>
+     <width>140</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Materia:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="inputMateria">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>170</y>
+     <width>220</width>
+     <height>28</height>
+    </rect>
+   </property>
+  </widget>
+
+  <!-- Integrantes -->
+  <widget class="QLabel" name="labelIntegrantes">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>220</y>
+     <width>140</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Integrantes:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="inputIntegrantes">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>220</y>
+     <width>220</width>
+     <height>28</height>
+    </rect>
+   </property>
+  </widget>
+
+  <!-- Entregado -->
+  <widget class="QCheckBox" name="checkEntregado">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>270</y>
+     <width>150</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>¿Entregado?</string>
+   </property>
+  </widget>
+
+  <!-- Botón Guardar -->
+  <widget class="QPushButton" name="btnGuardarProyecto">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>330</y>
+     <width>141</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Guardar Proyecto</string>
+   </property>
+  </widget>
+
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
