@@ -3,6 +3,7 @@
 #include <sstream>
 #include <QDir>
 #include <QString>
+#include <QDebug>
 
 std::vector<Proyecto> proyectos;
 
@@ -15,10 +16,16 @@ QString obtenerRutaArchivo() {
     return rutaCarpeta + "/proyectos.txt";
 }
 
+
 void guardarEnArchivo() {
     QString ruta = obtenerRutaArchivo();
+
+
     std::ofstream archivo(ruta.toStdString());
-    if (!archivo.is_open()) return;
+    if (!archivo.is_open()) {
+        qDebug() << "No se pudo abrir el archivo para escritura en: " << ruta;
+        return;
+    }
 
     for (const auto& p : proyectos) {
         archivo << p.codigo << ";"
@@ -28,6 +35,7 @@ void guardarEnArchivo() {
                 << (p.entregado ? "1" : "0") << "\n";
     }
     archivo.close();
+    qDebug() << "Archivo guardado en: " << ruta;
 }
 
 void cargarDesdeArchivo() {
