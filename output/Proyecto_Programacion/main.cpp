@@ -6,14 +6,14 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    cargarDesdeArchivo(); // Cargar proyectos desde archivo
+    cargarDesdeArchivo();
 
     MainWindow w;
     w.show();
 
     int result = a.exec();
 
-    guardarEnArchivo(); // Guardar proyectos al salir
+    guardarEnArchivo();
 
     return result;
 }

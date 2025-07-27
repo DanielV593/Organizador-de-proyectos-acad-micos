@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-// Incluye las cabeceras de las ventanas secundarias
 #include "crearproyecto.h"
 #include "mostrarproyectos.h"
 #include "actualizarproyecto.h"
@@ -13,7 +12,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // Conectar los botones a sus respectivas funciones
     connect(ui->btnCrear, &QPushButton::clicked, this, &MainWindow::abrirCrear);
     connect(ui->btnListar, &QPushButton::clicked, this, &MainWindow::abrirListar);
     connect(ui->btnActualizar, &QPushButton::clicked, this, &MainWindow::abrirActualizar);

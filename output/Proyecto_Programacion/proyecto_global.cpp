@@ -1,11 +1,23 @@
 #include "proyecto_global.h"
 #include <fstream>
 #include <sstream>
+#include <QDir>
+#include <QString>
 
 std::vector<Proyecto> proyectos;
 
+QString obtenerRutaArchivo() {
+    QString rutaCarpeta = "C:/Users/User/Documents/GitHub/Organizador-de-proyectos-acad-micos/output/Proyecto_Programacion";
+    QDir dir(rutaCarpeta);
+    if (!dir.exists()) {
+        dir.mkpath(".");
+    }
+    return rutaCarpeta + "/proyectos.txt";
+}
+
 void guardarEnArchivo() {
-    std::ofstream archivo("proyectos.txt");
+    QString ruta = obtenerRutaArchivo();
+    std::ofstream archivo(ruta.toStdString());
     if (!archivo.is_open()) return;
 
     for (const auto& p : proyectos) {
@@ -20,7 +32,9 @@ void guardarEnArchivo() {
 
 void cargarDesdeArchivo() {
     proyectos.clear();
-    std::ifstream archivo("proyectos.txt");
+
+    QString ruta = obtenerRutaArchivo();
+    std::ifstream archivo(ruta.toStdString());
     if (!archivo.is_open()) return;
 
     std::string linea;

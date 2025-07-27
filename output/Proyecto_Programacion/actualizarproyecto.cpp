@@ -80,7 +80,6 @@ void ActualizarProyecto::on_btnActualizarProyecto_clicked()
     proyectos[pos].integrantes = ui->inputIntegrantes->text().toStdString();
     proyectos[pos].entregado = ui->checkEntregado->isChecked();
 
-    // Guardar cambios usando función global
     guardarEnArchivo();
 
     QMessageBox::information(this, "Actualizado", "Proyecto actualizado correctamente.");

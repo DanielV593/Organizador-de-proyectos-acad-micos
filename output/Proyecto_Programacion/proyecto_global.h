@@ -14,11 +14,9 @@ struct Proyecto {
 
 extern std::vector<Proyecto> proyectos;
 
-// Funciones para manejo de archivo
 void guardarEnArchivo();
 void cargarDesdeArchivo();
 
-// Buscar proyecto por código (-1 si no existe)
 int buscarProyecto(const std::string& codigo);
 
 #endif // PROYECTO_GLOBAL_H

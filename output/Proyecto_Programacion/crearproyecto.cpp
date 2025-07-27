@@ -1,6 +1,6 @@
 #include "crearproyecto.h"
 #include "ui_crearproyecto.h"
-#include "proyecto_global.h"  // Donde está la lista global y buscarProyecto
+#include "proyecto_global.h"
 #include <QMessageBox>
 
 CrearProyecto::CrearProyecto(QWidget *parent)
@@ -35,6 +35,8 @@ void CrearProyecto::on_btnGuardarProyecto_clicked()
     }
 
     proyectos.push_back(nuevo);
+
+    guardarEnArchivo();
 
     QMessageBox::information(this, "Éxito", "Proyecto creado exitosamente.");
     limpiarCampos();

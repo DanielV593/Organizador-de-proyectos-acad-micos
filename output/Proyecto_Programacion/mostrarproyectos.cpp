@@ -1,7 +1,9 @@
 #include "mostrarproyectos.h"
 #include "ui_mostrarproyectos.h"
-#include "proyecto_global.h"  // Aquí está declarado el vector global proyectos
+#include "proyecto_global.h"
 #include <QString>
+#include <QTableWidgetItem>
+#include <QAbstractItemView>
 
 MostrarProyectos::MostrarProyectos(QWidget *parent) :
     QDialog(parent),
@@ -9,11 +11,10 @@ MostrarProyectos::MostrarProyectos(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // Configurar columnas de la tabla
     ui->tablaProyectos->setColumnCount(5);
     QStringList encabezados = {"Código", "Nombre", "Materia", "Integrantes", "Entregado"};
     ui->tablaProyectos->setHorizontalHeaderLabels(encabezados);
-    ui->tablaProyectos->setEditTriggers(QAbstractItemView::NoEditTriggers); // No editable
+    ui->tablaProyectos->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     cargarProyectosEnTabla();
 

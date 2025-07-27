@@ -1,9 +1,7 @@
 #include "eliminarproyecto.h"
 #include "ui_eliminarproyecto.h"
-#include "proyecto_global.h"  // Vector proyectos global
+#include "proyecto_global.h"
 #include <QMessageBox>
-#include <QFile>
-#include <QTextStream>
 
 EliminarProyecto::EliminarProyecto(QWidget *parent) :
     QDialog(parent),
@@ -42,25 +40,9 @@ void EliminarProyecto::on_btnEliminar_clicked()
         return;
     }
 
-    // Eliminar proyecto del vector
     proyectos.erase(proyectos.begin() + pos);
 
-    // Guardar cambios en archivo
-    QFile archivo("proyectos.txt");
-    if (!archivo.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)) {
-        QMessageBox::warning(this, "Error", "No se pudo abrir el archivo para guardar.");
-        return;
-    }
-
-    QTextStream out(&archivo);
-    for (const auto& p : proyectos) {
-        out << QString::fromStdString(p.codigo) << ";"
-            << QString::fromStdString(p.nombre) << ";"
-            << QString::fromStdString(p.materia) << ";"
-            << QString::fromStdString(p.integrantes) << ";"
-            << (p.entregado ? "1" : "0") << "\n";
-    }
-    archivo.close();
+    guardarEnArchivo();
 
     QMessageBox::information(this, "Éxito", "Proyecto eliminado correctamente.");
     ui->inputCodigoEliminar->clear();

@@ -21,7 +21,7 @@ private slots:
 
 private:
     Ui::ActualizarProyecto *ui;
-    QString codigoBuscado;  // Guarda el código del proyecto buscado
+    QString codigoBuscado;
 };
 
 #endif // ACTUALIZARPROYECTO_H
